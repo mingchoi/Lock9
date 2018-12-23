@@ -19,25 +19,26 @@ steps:
     volumes:
       - name: gosrc
         path: /go/src
-      - name: dronesrc
-        path: /drone/src
+      - name: release
+        path: /drone/release
     commands:
-      - go build
+      - go build -v -a -o /drone/release/linux/amd64/lock9
 
   - name: Show path
     image: golang
     volumes:
       - name: gosrc
         path: /go/src
-      - name: dronesrc
-        path: /drone/src
+      - name: release
+        path: /drone/release
     commands:
       - pwd
       - ls
+      - ls /drone/release/linux/amd64/
       - ls /go/src/github.com
 
 volumes:
   - name: gosrc
     temp: {}
-  - name: dronesrc
+  - name: release
     temp: {}
