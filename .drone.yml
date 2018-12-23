@@ -1,16 +1,47 @@
 kind: pipeline
-name: default
+name: Testing
 
 steps:
   - name: Testing
     image: golang
+    volumes:
+      - name: gosrc
+        path: /go/src
     commands:
       - go get github.com/go-sql-driver/mysql
       - go get github.com/mingchoi/struct2sql
       - go get github.com/tucnak/telebot
       - go test -v
       - go vet
+
+  - name: Show path
+    image: golang
+    volumes:
+      - name: gosrc
+        path: /go/src
+    commands:
+      - pwd
+      - ls
+      - ls /go/src
+
   - name: Build
     image: golang
+    volumes:
+      - name: gosrc
+        path: /go/src
     commands:
       - go build
+
+  - name: Show path
+    image: golang
+    volumes:
+      - name: gosrc
+        path: /go/src
+    commands:
+      - pwd
+      - ls
+      - ls /go/src
+
+volumes:
+  - name: gosrc
+    temp: {}
