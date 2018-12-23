@@ -14,34 +14,30 @@ steps:
       - go test -v
       - go vet
 
-  - name: Show path
-    image: golang
-    volumes:
-      - name: gosrc
-        path: /go/src
-    commands:
-      - pwd
-      - ls
-      - ls /go/src
-
   - name: Build
     image: golang
     volumes:
       - name: gosrc
         path: /go/src
+      - name: dronesrc
+        path: /drone/src
     commands:
       - go build
 
-  - name: Show path 2
+  - name: Show path
     image: golang
     volumes:
       - name: gosrc
         path: /go/src
+      - name: dronesrc
+        path: /drone/src
     commands:
       - pwd
       - ls
-      - ls /go/src
+      - ls /go/src/github.com
 
 volumes:
   - name: gosrc
+    temp: {}
+  - name: dronesrc
     temp: {}
