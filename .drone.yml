@@ -5,5 +5,8 @@ steps:
   - name: bot
     image: golang
     commands:
+      - go get github.com/go-sql-driver/mysql
+      - go get github.com/mingchoi/struct2sql
+      - go get github.com/tucnak/telebot
       - go build
       - go test
