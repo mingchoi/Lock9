@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"strings"
 	"time"
@@ -93,13 +94,13 @@ func main() {
 	b.Handle("/forwardvote", forwareVoteHandler)
 	b.Handle("/delete", removeMessageHandler)
 
-	fmt.Println("Bot starting...")
+	fmt.Println("Bot started")
 	b.Start()
-
 }
 
 func handleError(err error) {
 	fmt.Println("Error: ", err)
+	debug.PrintStack()
 }
 
 func removeMessageHandler(m *tb.Message) {
