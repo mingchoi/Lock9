@@ -24,7 +24,7 @@ steps:
     commands:
       - go build -v -a -o /drone/release/linux/amd64/lock9
 
-  - name: Show path
+  - name: Check files
     image: golang
     volumes:
       - name: gosrc
@@ -34,8 +34,22 @@ steps:
     commands:
       - pwd
       - ls
-      - ls /drone/release/linux/amd64/
       - ls /go/src/github.com
+      - ls /drone/release/linux/amd64/
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: mingchoi/lock9
+      auto_tag: true
+      dockerfile: Dockerfile_drone
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+    when:
+      event:
+        - push
+        - tag
 
 volumes:
   - name: gosrc
