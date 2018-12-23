@@ -17,3 +17,7 @@ Add `@lock9_bot` to your group, then type one of the following command:
 # Forward a vote
 /forwardvote {VoteID}
 ```
+
+### Change Log
+
+v0.1 - Vote feature added
