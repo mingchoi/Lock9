@@ -41,7 +41,7 @@ steps:
     image: plugins/docker
     volumes:
       - name: release
-        path: release
+        path: /drone/src/release
     settings:
       repo: mingchoi/lock9
       auto_tag: true
