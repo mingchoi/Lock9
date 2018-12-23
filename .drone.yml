@@ -32,7 +32,7 @@ steps:
     commands:
       - go build
 
-  - name: Show path
+  - name: Show path 2
     image: golang
     volumes:
       - name: gosrc
