@@ -42,3 +42,4 @@ rerun_container:
 
 upload_image:
 	sudo docker push mingchoi/lock9
+	

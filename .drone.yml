@@ -2,11 +2,15 @@ kind: pipeline
 name: default
 
 steps:
-  - name: bot
+  - name: Testing
     image: golang
     commands:
       - go get github.com/go-sql-driver/mysql
       - go get github.com/mingchoi/struct2sql
       - go get github.com/tucnak/telebot
+      - go test -v
+      - go vet
+  - name: Build
+    image: golang
+    commands:
       - go build
-      - go test
