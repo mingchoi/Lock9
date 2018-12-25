@@ -42,12 +42,13 @@ func main() {
 			strings.Replace(os.Getenv("DB_PORT"), "tcp://", "", 1)+
 			")/"+
 			os.Getenv("LOCK9_DB_NAME")+
-			"?charset=utf8&parseTime=True&loc=Local",
+			"?charset=utf8mb4&parseTime=True&loc=Local",
 	)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
+	defer db.Close()
 	checkDBTable()
 
 	// Config bot
