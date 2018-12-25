@@ -11,6 +11,7 @@ steps:
       - go get github.com/go-sql-driver/mysql
       - go get github.com/mingchoi/struct2sql
       - go get github.com/tucnak/telebot
+      - go get github.com/mingchoi/lock9
       - go test -v
       - go vet
 
