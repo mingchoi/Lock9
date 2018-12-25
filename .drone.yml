@@ -21,9 +21,9 @@ steps:
       - name: gosrc
         path: /go/src
       - name: release
-        path: /drone/release
+        path: /drone/src/release
     commands:
-      - go build -v -a -o /drone/release/linux/amd64/lock9
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -o /drone/src/release/linux/amd64/lock9
 
   - name: Show Files
     image: golang
