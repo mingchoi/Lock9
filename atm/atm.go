@@ -21,6 +21,9 @@ type ATMInfo struct {
 func (info *ATMInfo) New(message string) (err error) {
 	// Validate input
 	input := strings.Fields(message)
+	if len(input) == 1 {
+		return ErrEmpty
+	}
 	if len(input) != 5 {
 		return ErrCommandFormat
 	}
