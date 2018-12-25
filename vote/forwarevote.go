@@ -12,7 +12,7 @@ import (
 func ForwareVoteHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 	options := strings.Fields(m.Text)
 	if len(options) != 2 {
-		bot.Send(m.Sender, "Please follow format: /forwardvote {VoteID}")
+		bot.Send(m.Chat, "Please follow format: /forwardvote {VoteID}")
 		return
 	}
 	voteid, err := strconv.Atoi(options[1])
@@ -27,7 +27,7 @@ func ForwareVoteHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 		panic(err)
 	}
 	if vote.ID == 0 {
-		bot.Send(m.Sender, "Vote not found.")
+		bot.Send(m.Chat, "Vote not found.")
 		return
 	}
 

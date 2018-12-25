@@ -87,6 +87,10 @@ func LendHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 	err := info.New(m.Text)
 	if err != nil {
 		switch err {
+		case ErrEmpty:
+			bot.Send(m.Chat, "幫人出錢, Format: \n/lend 原因 @邊個出錢 @欠款人A 1500yen @欠款人B 1800yen...")
+			//bot.Send(m.Chat, "Lend money to peoples, Format: \n/lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
+			return
 		case ErrCommandFormat:
 			bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease follow format: /lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
 			return

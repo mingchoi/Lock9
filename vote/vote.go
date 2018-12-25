@@ -10,14 +10,14 @@ import (
 	tb "github.com/tucnak/telebot"
 )
 
-// VoteRef is
+// VoteRef provide reference between vote and messages
 type VoteRef struct {
 	VoteID    int `foreignkey:"vote(id)"`
 	ChatID    int
 	MessageID int
 }
 
-// Vote is
+// Vote contain description of the vote
 type Vote struct {
 	ID          int `keyword:"NOT NULL AUTO_INCREMENT" primarykey:"true"`
 	Title       string
@@ -29,7 +29,7 @@ type Vote struct {
 	UpdatedAt   time.Time
 }
 
-// Choice is
+// Choice contain user's choice
 type Choice struct {
 	ID        int `keyword:"NOT NULL AUTO_INCREMENT" primarykey:"true"`
 	VoteID    int `foreignkey:"vote(id)"`
@@ -61,7 +61,7 @@ func (vote *Vote) String(choices []Choice) string {
 		}
 		str += strconv.Itoa(i+1) + ". " + options[i] + " [" + strconv.Itoa(count) + "]" + nameList + "\n\n"
 	}
-	str += "Votes: " + strconv.Itoa(vote.Voters)
+	str += "Votes: " + strconv.Itoa(vote.Voters) + ", ID: " + strconv.Itoa(vote.ID)
 	return str
 }
 

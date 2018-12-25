@@ -10,12 +10,12 @@ import (
 
 func removeMessageHandler(m *tb.Message) {
 	if m.Sender.ID != 195152664 {
-		b.Send(m.Sender, "You have no permission to do that")
+		b.Send(m.Chat, "You have no permission to do that")
 		return
 	}
 	options := strings.Split(m.Text, " ")
 	if len(options) != 3 {
-		b.Send(m.Sender, "Please follow format: /delete {ChatID} {MessageID}")
+		b.Send(m.Chat, "Please follow format: /delete {ChatID} {MessageID}")
 		return
 	}
 

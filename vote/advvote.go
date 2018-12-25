@@ -12,11 +12,11 @@ import (
 func AdvVoteHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 	options := strings.Fields(m.Text)
 	if len(options) < 5 || !(options[1] == "single" || options[1] == "multiple") {
-		bot.Send(m.Sender, "Please follow format: /vote {single|multiple} MyTitle option1 option2")
+		bot.Send(m.Chat, "Please follow format: /vote {single|multiple} MyTitle option1 option2")
 		return
 
 	} else if len(options) > 9 {
-		bot.Send(m.Sender, "Maximum of options is 6")
+		bot.Send(m.Chat, "Maximum of options is 6")
 		return
 	}
 

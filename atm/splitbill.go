@@ -76,6 +76,10 @@ func SplitBillHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 	err := info.New(m.Text)
 	if err != nil {
 		switch err {
+		case ErrEmpty:
+			bot.Send(m.Chat, "分單, Format: \n/split 食咩飯 @邊個出錢 3000 @食家A @食家B...")
+			//bot.Send(m.Chat, "Split a bill to all people, Format: \n/split Title @payer 3000 @lenderA @lenderB...")
+			return
 		case ErrCommandFormat:
 			bot.Send(m.Chat, "Error: "+err.Error()+"\n/split Title @payer 3000 @lenderA @lenderB...")
 			return
