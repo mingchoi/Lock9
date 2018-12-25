@@ -10,6 +10,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mingchoi/lock9/atm"
+	"github.com/mingchoi/lock9/vote"
 	s2s "github.com/mingchoi/struct2sql"
 	tb "github.com/tucnak/telebot"
 )
@@ -62,9 +63,9 @@ func main() {
 	}
 
 	// Handle Vote command
-	b.Handle("/vote", quickVoteHandler)
-	b.Handle("/voteadv", advVoteHandler)
-	b.Handle("/forwardvote", forwareVoteHandler)
+	b.Handle("/vote", func(m *tb.Message) { vote.QuickVoteHandler(m, b, db) })
+	b.Handle("/voteadv", func(m *tb.Message) { vote.AdvVoteHandler(m, b, db) })
+	b.Handle("/forwardvote", func(m *tb.Message) { vote.ForwareVoteHandler(m, b, db) })
 
 	// Handle ATM command
 	b.Handle("/atm", func(m *tb.Message) { atm.AtmHandler(m, b, db) })
@@ -75,12 +76,12 @@ func main() {
 	b.Handle("/delete", removeMessageHandler)
 
 	// Handle button callback
-	b.Handle("\fa1", btnHandler1)
-	b.Handle("\fa2", btnHandler2)
-	b.Handle("\fa3", btnHandler3)
-	b.Handle("\fa4", btnHandler4)
-	b.Handle("\fa5", btnHandler5)
-	b.Handle("\fa6", btnHandler6)
+	b.Handle("\fa1", func(c *tb.Callback) { vote.BtnHandler1(c, b, db) })
+	b.Handle("\fa2", func(c *tb.Callback) { vote.BtnHandler2(c, b, db) })
+	b.Handle("\fa3", func(c *tb.Callback) { vote.BtnHandler3(c, b, db) })
+	b.Handle("\fa4", func(c *tb.Callback) { vote.BtnHandler4(c, b, db) })
+	b.Handle("\fa5", func(c *tb.Callback) { vote.BtnHandler5(c, b, db) })
+	b.Handle("\fa6", func(c *tb.Callback) { vote.BtnHandler6(c, b, db) })
 
 	// Start bot
 	fmt.Println("Bot started")
@@ -97,7 +98,7 @@ func checkDBTable() {
 	// check if tables exist
 	_, err := db.Exec("SELECT 1 FROM vote LIMIT 1")
 	if err != nil {
-		err = db.CreateTable(&Vote{})
+		err = db.CreateTable(&vote.Vote{})
 		if err != nil {
 			log.Fatal(err)
 			return
@@ -105,7 +106,7 @@ func checkDBTable() {
 	}
 	_, err = db.Exec("SELECT 1 FROM choice LIMIT 1")
 	if err != nil {
-		err = db.CreateTable(&Choice{})
+		err = db.CreateTable(&vote.Choice{})
 		if err != nil {
 			log.Fatal(err)
 			return
@@ -113,7 +114,7 @@ func checkDBTable() {
 	}
 	_, err = db.Exec("SELECT 1 FROM voteref LIMIT 1")
 	if err != nil {
-		err = db.CreateTable(&VoteRef{})
+		err = db.CreateTable(&vote.VoteRef{})
 		if err != nil {
 			log.Fatal(err)
 			return

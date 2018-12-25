@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/mingchoi/lock9/vote"
 	tb "github.com/tucnak/telebot"
 )
 
@@ -29,7 +30,7 @@ func removeMessageHandler(m *tb.Message) {
 			MessageID: options[2],
 		})
 
-	var ref VoteRef
+	var ref vote.VoteRef
 	err = db.Select(&ref, "chatid = ? AND messageid = ?", chatid, options[2])
 	if err != nil {
 		panic(err)
