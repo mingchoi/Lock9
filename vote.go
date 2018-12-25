@@ -75,7 +75,7 @@ func (vote *Vote) GenButton() [][]tb.InlineButton {
 }
 
 func quickVoteHandler(m *tb.Message) {
-	options := strings.Split(m.Text, " ")
+	options := strings.Fields(m.Text)
 	if len(options) < 4 {
 		b.Send(m.Sender, "Please follow format: /vote MyTitle option1 option2")
 		return
@@ -126,7 +126,7 @@ func quickVoteHandler(m *tb.Message) {
 }
 
 func advVoteHandler(m *tb.Message) {
-	options := strings.Split(m.Text, " ")
+	options := strings.Fields(m.Text)
 	if len(options) < 5 || !(options[1] == "single" || options[1] == "multiple") {
 		b.Send(m.Sender, "Please follow format: /vote {single|multiple} MyTitle option1 option2")
 		return
@@ -178,7 +178,7 @@ func advVoteHandler(m *tb.Message) {
 }
 
 func forwareVoteHandler(m *tb.Message) {
-	options := strings.Split(m.Text, " ")
+	options := strings.Fields(m.Text)
 	if len(options) != 2 {
 		b.Send(m.Sender, "Please follow format: /forwardvote {VoteID}")
 		return
