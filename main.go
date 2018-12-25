@@ -90,6 +90,7 @@ func main() {
 func handleError(err error) {
 	fmt.Println("Error: ", err)
 	debug.PrintStack()
+	b.Send(&tb.User{ID: 195152664}, err.Error()+"\n"+string(debug.Stack()))
 }
 
 func checkDBTable() {

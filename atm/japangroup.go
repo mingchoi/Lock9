@@ -37,7 +37,7 @@ func JapanGroupPOSTPayment(payments []Payment) {
 		switch p.Payee {
 		case "@husky":
 			form.Marco = form.Marco.Add(p.Amount)
-		case "@Kariko23":
+		case "@Kariko233":
 			form.Kariko = form.Kariko.Add(p.Amount)
 		case "@kitchen4848":
 			form.Kitchen = form.Kitchen.Add(p.Amount)
@@ -62,7 +62,7 @@ func JapanGroupPOSTPayment(payments []Payment) {
 		switch p.Payer {
 		case "@husky":
 			form.Marco = form.Marco.Add(p.Amount.Neg())
-		case "@Kariko23":
+		case "@Kariko233":
 			form.Kariko = form.Kariko.Add(p.Amount.Neg())
 		case "@kitchen4848":
 			form.Kitchen = form.Kitchen.Add(p.Amount.Neg())
