@@ -8,6 +8,7 @@ default:
 	--env LOCK9_API_SECRET=${LOCK9_API_SECRET} \
 	--env LOCK9_DB_SECRET=${LOCK9_DB_SECRET} \
 	--env LOCK9_DB_NAME=${LOCK9_DB_NAME} \
+	--env LOCK9_JAPANGROUP_FORMURL=${LOCK9_JAPANGROUP_FORMURL} \
 	--link mariadb:db \
 	-d \
 	mingchoi/lock9
@@ -24,6 +25,7 @@ run_container:
 	--env LOCK9_API_SECRET=${LOCK9_API_SECRET} \
 	--env LOCK9_DB_SECRET=${LOCK9_DB_SECRET} \
 	--env LOCK9_DB_NAME=${LOCK9_DB_NAME} \
+	--env LOCK9_JAPANGROUP_FORMURL=${LOCK9_JAPANGROUP_FORMURL} \
 	--link mariadb:db \
 	-d \
 	lock9
@@ -36,6 +38,7 @@ rerun_container:
 	--env LOCK9_API_SECRET=${LOCK9_API_SECRET} \
 	--env LOCK9_DB_SECRET=${LOCK9_DB_SECRET} \
 	--env LOCK9_DB_NAME=${LOCK9_DB_NAME} \
+	--env LOCK9_JAPANGROUP_FORMURL=${LOCK9_JAPANGROUP_FORMURL} \
 	--link mariadb:db \
 	-d \
 	mingchoi/lock9

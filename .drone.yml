@@ -25,6 +25,21 @@ steps:
     commands:
       - go build -v -a -o /drone/release/linux/amd64/lock9
 
+  - name: Show Files
+    image: golang
+    volumes:
+      - name: gosrc
+        path: /go/src
+      - name: release
+        path: /drone/src/release
+    commands:
+      - ls
+      - ls /go/src/
+      - ls /drone/src/
+      - ls /drone/src/release
+      - ls /drone/src/release/linux
+      - ls /drone/src/release/linux/amd64
+
   - name: Publish
     image: plugins/docker
     volumes:
