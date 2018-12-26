@@ -67,7 +67,7 @@ func AtmHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 	if err != nil {
 		switch err {
 		case ErrEmpty:
-			bot.Send(m.Chat, "過數比人, Format: \n/atm 原因 @邊個比錢 1500yen @邊個收錢")
+			bot.Send(m.Chat, "過數比人, Format: \n/atm 原因 @邊個比錢 1500 @邊個收錢")
 			//bot.Send(m.Chat, "Transfer money to someone, Format: \n/atm Title @payer 1500yen @payee")
 			return
 		case ErrCommandFormat:
