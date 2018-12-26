@@ -84,10 +84,12 @@ func SplitBillHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 			//bot.Send(m.Chat, "Split a bill to all people, Format: \n/split Title @payer 3000 @lenderA @lenderB...")
 			return
 		case ErrCommandFormat:
-			bot.Send(m.Chat, "Error: "+err.Error()+"\n/split Title @payer 3000 @lenderA @lenderB...")
+			bot.Send(m.Chat, "訓撚醒未: "+err.Error()+"\n睇清楚格式啦: \n/split Title @payer 3000 @lenderA @lenderB...")
+			//bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease follow format: /split Title @payer 3000 @lenderA @lenderB...")
 			return
 		case ErrUsernameIncorrect:
-			bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease check the username")
+			bot.Send(m.Chat, "訓啦柒頭: "+err.Error()+"\n你tag緊邊條柒頭？")
+			//bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease check the username")
 			return
 		default:
 			bot.Send(m.Chat, "Error: "+err.Error())

@@ -95,10 +95,12 @@ func LendHandler(m *tb.Message, bot *tb.Bot, db *s2s.DB) {
 			//bot.Send(m.Chat, "Lend money to peoples, Format: \n/lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
 			return
 		case ErrCommandFormat:
-			bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease follow format: /lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
+			bot.Send(m.Chat, "訓撚醒未: "+err.Error()+"\n睇清楚格式啦: /lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
+			//bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease follow format: /lend Title @payer @lenderA 1500yen @lenderB 1800yen...")
 			return
 		case ErrUsernameIncorrect:
-			bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease check the username")
+			bot.Send(m.Chat, "訓啦柒頭: "+err.Error()+"\n你tag緊邊條柒頭？")
+			//bot.Send(m.Chat, "Error: "+err.Error()+"\nPlease check the username")
 			return
 		default:
 			bot.Send(m.Chat, "Error: "+err.Error())
